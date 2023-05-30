@@ -14,37 +14,50 @@ import {
   Box,
   Input,
   Button,
- // Alert,
- // AlertIcon,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+  useDisclosure,
+  // Alert,
+  // AlertIcon,
 } from "@chakra-ui/react";
 
 const RepoList = () => {
   const [repos, setRepos] = useState([]);
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState("GitHub");
   //const [berror, setBerror] = useState('');
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
-    const fetchRepos = async () => {
-        try {
-        const response = await axios.get(
-            "https://api.github.com/orgs/"+ search + "/repos"
-        );
-        setRepos(response.data);
-        } catch (error) {
-            console.log(error)
-            //setBerror('Error fetching repositories.');
-           // console.log(berror)
-            //setTimeout(() => {
-            //    setBerror('');
-            //}, 2000);
-        }
-    };
+  const fetchRepos = async () => {
+    try {
+      const response = await axios.get(
+        "https://api.github.com/orgs/" + search + "/repos"
+      );
+      setRepos(response.data);
+    } catch (error) {
+      console.log(error);
+      //setBerror('Error fetching repositories.');
+      // console.log(berror)
+      //setTimeout(() => {
+      //    setBerror('');
+      //}, 2000);
+    }
+  };
 
-    //const alert = () => {
-    //    <Alert position={'absolute'} status='error'>
-    //        <AlertIcon />
-    //        {berror}
-    //    </Alert>
-    //}
+  const openModal = () => {
+    onOpen();
+  };
+
+  //const alert = () => {
+  //    <Alert position={'absolute'} status='error'>
+  //        <AlertIcon />
+  //        {berror}
+  //    </Alert>
+  //}
   return (
     <div>
       <Center h="100px" color="white">
@@ -65,12 +78,29 @@ const RepoList = () => {
           placeholder="Search Here!"
           width="30%"
         />
-        <Button 
-            colorScheme="blue"
-            onClick={fetchRepos}
-        >
-            Search Now!</Button>
+        <Button colorScheme="blue" onClick={fetchRepos}>
+          Search Now!
+        </Button>
       </Box>
+
+      <Modal blockScrollOnMount={false} isOpen={isOpen} onClose={onClose}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Modal Title</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            <Text fontWeight="bold" mb="1rem">
+              dang it
+            </Text>
+          </ModalBody>
+
+          <ModalFooter justifyContent={"center"}>
+            <Button colorScheme="blue" mr={3} onClick={onClose}>
+              Close
+            </Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
 
       <Text
         paddingLeft={"20px"}
@@ -84,19 +114,23 @@ const RepoList = () => {
         {repos.map((repo, idx) => (
           <Card maxW="20%" h={"m"} key={idx} display={"inline-block"}>
             <CardBody>
-              <Image src={repo.owner.avatar_url} borderRadius="lg" />
-              <Stack mt="6" spacing="3">
-                <Heading size="md">
+              <Image
+                onClick={openModal}
+                src={repo.owner.avatar_url}
+                borderRadius="lg"
+              />
+              <Stack h={"120px"} mt="3" spacing="3">
+                <Heading h={"50%"} fontSize={"2vw"} size="md">
                   {repo.name} - {repo.language}
                 </Heading>
-                <Text h={"70px"} overflowY={"scroll"}>
-                  {repo.description}
+                <Text h={"50%"} overflowY={"scroll"}>
+                  {repo.language}
                 </Text>
               </Stack>
             </CardBody>
             <Divider />
             <CardFooter justifyContent={"center"}>
-              <Stack alignItems={"center"} direction={"row"}>
+              <Stack h={"100%"} alignItems={"center"} direction={"row"}>
                 <Badge fontSize={"80%"} colorScheme="green">
                   Stars: {repo.stargazers_count}
                 </Badge>
