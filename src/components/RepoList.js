@@ -37,7 +37,11 @@ const RepoList = () => {
       const response = await axios.get(
         "https://api.github.com/orgs/" + search + "/repos"
       );
-      setRepos(response.data);
+      setRepos(
+        response.data.sort((a, b) =>
+          b.stargazers_count > a.stargazers_count ? 1 : -1
+        )
+      );
     } catch (error) {
       console.log(error);
       //setBerror('Error fetching repositories.');
@@ -124,18 +128,23 @@ const RepoList = () => {
                   {repo.name} - {repo.language}
                 </Heading>
                 <Text h={"50%"} overflowY={"scroll"}>
-                  {repo.language}
+                  {repo.description}
                 </Text>
               </Stack>
             </CardBody>
             <Divider />
-            <CardFooter justifyContent={"center"}>
-              <Stack h={"100%"} alignItems={"center"} direction={"row"}>
+            <CardFooter justifyContent={"center"} flexWrap={"wrap"}>
+              <Stack h={"80%"} alignItems={"center"} direction={"row"}>
                 <Badge fontSize={"80%"} colorScheme="green">
                   Stars: {repo.stargazers_count}
                 </Badge>
-                <Badge fontSize={"80%"}>Forks: {repo.forks_count}</Badge>
+                <Badge fontSize={"80%"} colorScheme="blue">
+                  Forks: {repo.forks_count}
+                </Badge>
               </Stack>
+              <Badge fontSize={"80%"} colorScheme="gray">
+                Created: {repo.created_at}
+              </Badge>
             </CardFooter>
           </Card>
         ))}
