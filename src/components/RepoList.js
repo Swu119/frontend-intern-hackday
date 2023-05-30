@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import './RepoList.css'
 import {
   Card,
   CardBody,
@@ -28,7 +29,7 @@ import {
 
 const RepoList = () => {
   const [repos, setRepos] = useState([]);
-  const [search, setSearch] = useState("GitHub");
+  const [search, setSearch] = useState("");
   //const [berror, setBerror] = useState('');
   const { isOpen, onOpen, onClose } = useDisclosure();
 
