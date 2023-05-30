@@ -65,7 +65,7 @@ const RepoList = () => {
   //}
   return (
     <div>
-      <Center h="100px" color="white">
+      <Center h="100px" color="black">
         <p style={{ fontSize: "35px", fontWeight: "bold" }}>
           Search For a GitHub Organization!
         </p>
@@ -109,13 +109,13 @@ const RepoList = () => {
 
       <Text
         paddingLeft={"20px"}
-        color={"white"}
+        color={"black"}
         fontSize={"25px"}
         fontWeight={"bold"}
       >
         Found Repositories:
       </Text>
-      <ul style={{ maxHeight: "80vh", overflowY: "scroll" }}>
+      <ul style={{ maxHeight: "75vh", overflowY: "scroll" }}>
         {repos.map((repo, idx) => (
           <Card maxW="20%" h={"m"} key={idx} display={"inline-block"}>
             <CardBody>
@@ -125,7 +125,7 @@ const RepoList = () => {
                 borderRadius="lg"
               />
               <Stack h={"120px"} mt="3" spacing="3">
-                <Heading h={"50%"} fontSize={"2vw"} size="md">
+                <Heading h={"50%"} fontSize={"1.5vw"} size="md">
                   {repo.name} - {repo.language}
                 </Heading>
                 <Text h={"50%"} overflowY={"scroll"}>
