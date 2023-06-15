@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/frontend-intern-hackday/static/css/main.fb532045.css",
-    "main.js": "/frontend-intern-hackday/static/js/main.fe9c8713.js",
+    "main.js": "/frontend-intern-hackday/static/js/main.7ce147a5.js",
     "static/js/787.5d6084fc.chunk.js": "/frontend-intern-hackday/static/js/787.5d6084fc.chunk.js",
     "index.html": "/frontend-intern-hackday/index.html",
     "main.fb532045.css.map": "/frontend-intern-hackday/static/css/main.fb532045.css.map",
-    "main.fe9c8713.js.map": "/frontend-intern-hackday/static/js/main.fe9c8713.js.map",
+    "main.7ce147a5.js.map": "/frontend-intern-hackday/static/js/main.7ce147a5.js.map",
     "787.5d6084fc.chunk.js.map": "/frontend-intern-hackday/static/js/787.5d6084fc.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.fb532045.css",
-    "static/js/main.fe9c8713.js"
+    "static/js/main.7ce147a5.js"
   ]
 }
